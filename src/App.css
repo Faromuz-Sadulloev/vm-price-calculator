@@ -1,0 +1,152 @@
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5em;
+  color: #333333;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: 400;
+  color: #666666;
+  margin-bottom: 40px;
+}
+
+.sections-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.section {
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #fafafa;
+}
+
+.section h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #333333;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.9em;
+  color: #333333;
+  font-weight: 500;
+}
+
+.input-group input[type="number"],
+.input-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  font-size: 1em;
+  background-color: #ffffff;
+  color: #333333;
+  box-sizing: border-box;
+}
+
+.input-group input[type="number"]:focus,
+.input-group select:focus {
+  outline: none;
+  border-color: #999999;
+}
+
+.toggle-group {
+  display: flex;
+  gap: 10px;
+}
+
+.toggle-btn {
+  flex: 1;
+  padding: 10px 20px;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  color: #333333;
+  font-size: 0.95em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.toggle-btn:hover {
+  background-color: #e8e8e8;
+}
+
+.toggle-btn.active {
+  background-color: #666666;
+  color: #ffffff;
+  border-color: #666666;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.calculate-btn {
+  padding: 12px 40px;
+  font-size: 1.1em;
+  background-color: #f5f5f5;
+  color: #333333;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.calculate-btn:hover {
+  background-color: #e8e8e8;
+}
+
+.price-display {
+  text-align: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1.2em;
+  color: #333333;
+  font-weight: 500;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .sections-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .section {
+    width: 100%;
+    max-width: 100%;
+  }
+}
