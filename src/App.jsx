@@ -14,6 +14,23 @@ function App() {
     adminSupport: "yes",
     slaLevel: ""
   });
+
+  const [pricing, setPricing] = useState({
+    vcpu: 6,
+    ram: 0.8,
+    ssd: 0.04,
+    hdd: 0.015,
+    ethernetPorts: 20,
+    rackUnits: 42,
+    power: 175,
+    adminSupport: 100,
+    slaMultipliers: {
+      none: 1.0,
+      "99.9": 1.10,
+      "99.9.99": 1.25,
+    }
+  })
+
   const [price, setPrice] = useState(0.0);
 
   // Обработчик изменения полей ввода
@@ -43,16 +60,16 @@ function App() {
     
     // Пример расчета
     let calculatedPrice = 0;
-    calculatedPrice += vcpu * 6; // $6 за VCPU
-    calculatedPrice += ram * 0.8; // $0.8 за GB RAM
-    calculatedPrice += ssd * 0.04; // $0.04 за GB SSD
-    calculatedPrice += hdd * 0.015; // $0.015 за GB HDD
-    calculatedPrice += ethernetPorts * 20; // $15 за порт
-    calculatedPrice += rackUnits * 42; // $42 за rack unit
-    calculatedPrice += power * 175; // $175 за kW
+    calculatedPrice += vcpu * pricing.vcpu;
+    calculatedPrice += ram * pricing.ram;
+    calculatedPrice += ssd * pricing.ssd;
+    calculatedPrice += hdd * pricing.hdd;
+    calculatedPrice += ethernetPorts * pricing.ethernetPorts;
+    calculatedPrice += rackUnits * pricing.rackUnits;
+    calculatedPrice += power * pricing.power;
     
     if (adminSupport) {
-      calculatedPrice += 100; // +$100 за поддержку
+      calculatedPrice += pricing.adminSupport;
     }
     
     // Множитель для SLA
@@ -61,7 +78,7 @@ function App() {
       "99.9": 1.10,
       "99.99": 1.25
     };
-    calculatedPrice *= (slaMultipliers[slaLevel] || 1.0);
+    calculatedPrice *= pricing.slaMultipliers[slaLevel] || 1.0;
     
     setPrice(calculatedPrice);
   };
@@ -73,6 +90,67 @@ function App() {
       
       <form onSubmit={handleCalculate}>
         <div className="sections-container">
+          <div className="section price-section">
+            <h3>Pricing Section</h3>
+            <div className="pricing-grid">
+              <div className="input-group">
+                <label>VCPU Price:</label>
+                <input 
+                  type="number" 
+                  name="vcpu-price" 
+                  value={pricing.vcpu} onChange={(e) => setPricing(prev => ({...prev, vcpu: +e.target.value}))} 
+                  />
+              </div>
+              <div className="input-group">
+                <label>RAM Price:</label>
+                <input 
+                  type="number" 
+                  name="ram-price" 
+                  value={pricing.ram} onChange={(e) => setPricing(prev => ({...prev, ram: +e.target.value}))} 
+                  />
+              </div>
+              <div className="input-group">
+                <label>SSD Price:</label>
+                <input 
+                  type="number" 
+                  name="ssd-price" 
+                  value={pricing.ssd} onChange={(e) => setPricing(prev => ({...prev, ssd: +e.target.value}))} 
+                  />
+              </div>
+              <div className="input-group">
+                <label>HDD Price:</label>
+                <input 
+                  type="number" 
+                  name="hdd-price" 
+                  value={pricing.hdd} onChange={(e) => setPricing(prev => ({...prev, hdd: +e.target.value}))} 
+                  />
+              </div>
+              <div className="input-group">
+                <label>Eth-Ports Price:</label>
+                <input 
+                  type="number" 
+                  name="ethernet-port-price" 
+                  value={pricing.ethernetPorts} onChange={(e) => setPricing(prev => ({...prev, ethernetPorts: +e.target.value}))} 
+                  />
+              </div>
+              <div className="input-group">
+                <label>R-Units Price:</label>
+                <input 
+                  type="number" 
+                  name="rack-units-price" 
+                  value={pricing.rackUnits} onChange={(e) => setPricing(prev => ({...prev, rackUnits: +e.target.value}))} 
+                  />
+              </div>
+              <div className="input-group">
+                <label>Power (Kw) Price:</label>
+                <input 
+                  type="number" 
+                  name="power-price" 
+                  value={pricing.power} onChange={(e) => setPricing(prev => ({...prev, power: +e.target.value}))} 
+                  />
+              </div>
+            </div>
+          </div>
           <div className="section compute-resources">
             <h3>Compute Resources</h3>
             <div className="input-group">
@@ -159,49 +237,52 @@ function App() {
             </div>
           </div>
 
-          <div className="section additional-options">
-            <h3>Additional Options</h3>
-            <div className="input-group">
-              <label>Admin Support:</label>
-              <div className="toggle-group">
-                <button
-                  type="button"
-                  className={`toggle-btn ${formData.adminSupport === "yes" ? "active" : ""}`}
-                  onClick={() => setFormData(prev => ({ ...prev, adminSupport: "yes" }))}
+          <div className="section-row">
+            <div className="section additional-options">
+              <h3>Additional Options</h3>
+              <div className="input-group">
+                <label>Admin Support:</label>
+                <div className="toggle-group">
+                  <button
+                    type="button"
+                    className={`toggle-btn ${formData.adminSupport === "yes" ? "active" : ""}`}
+                    onClick={() => setFormData(prev => ({ ...prev, adminSupport: "yes" }))}
+                  >
+                    Yes
+                  </button>
+                  <button
+                    type="button"
+                    className={`toggle-btn ${formData.adminSupport === "no" ? "active" : ""}`}
+                    onClick={() => setFormData(prev => ({ ...prev, adminSupport: "no" }))}
+                  >
+                    No
+                  </button>
+                </div>
+              </div>
+              <div className="input-group">
+                <label>SLA Level:</label>
+                <select 
+                  name="slaLevel"
+                  value={formData.slaLevel}
+                  onChange={handleInputChange}
                 >
-                  Yes
-                </button>
-                <button
-                  type="button"
-                  className={`toggle-btn ${formData.adminSupport === "no" ? "active" : ""}`}
-                  onClick={() => setFormData(prev => ({ ...prev, adminSupport: "no" }))}
-                >
-                  No
-                </button>
+                  <option value="">Select SLA</option>
+                  <option value="none">None</option>
+                  <option value="99.9">99.9</option>
+                  <option value="99.99">99.99</option>
+                </select>
               </div>
             </div>
-            <div className="input-group">
-              <label>SLA Level:</label>
-              <select 
-                name="slaLevel"
-                value={formData.slaLevel}
-                onChange={handleInputChange}
-              >
-                <option value="">Select SLA</option>
-                <option value="none">None</option>
-                <option value="99.9">99.9</option>
-                <option value="99.99">99.99</option>
-              </select>
+            
+            <div className="calculate-price-container">
+              <div className="button-container">
+                <button type="submit" className="calculate-btn">Calculate</button>
+              </div>
+              <div className="price-display">
+                VM price per month: ${price.toFixed(2)}
+              </div>
             </div>
           </div>
-        </div>
-
-        <div className="button-container">
-          <button type="submit" className="calculate-btn">Calculate</button>
-        </div>
-
-        <div className="price-display">
-          VM price per month: ${price.toFixed(2)}
         </div>
       </form>
     </div>

@@ -105,10 +105,31 @@ h2 {
   border-color: #666666;
 }
 
+.section-row {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  flex-basis: 100%;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.calculate-price-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
+  align-items: stretch;
+  align-self: flex-end;
+}
+
 .button-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 30px;
+  width: 100%;
 }
 
 .calculate-btn {
@@ -120,6 +141,7 @@ h2 {
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s;
+  width: 100%;
 }
 
 .calculate-btn:hover {
@@ -135,8 +157,8 @@ h2 {
   font-size: 1.2em;
   color: #333333;
   font-weight: 500;
-  max-width: 600px;
-  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
@@ -148,5 +170,58 @@ h2 {
   .section {
     width: 100%;
     max-width: 100%;
+  }
+  
+  .section-row {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .calculate-price-container {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .price-section .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.price-section {
+  display: flex;
+  flex-direction: column;
+  min-width: 280px;
+  max-width: 100%;
+}
+
+.price-section .pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+.price-section .pricing-grid .input-group {
+  margin-bottom: 0;
+}
+
+@media (min-width: 769px) {
+  .price-section {
+    max-width: 700px;
+    width: 100%;
+  }
+  
+  .price-section .pricing-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .price-section {
+    max-width: 750px;
+  }
+  
+  .price-section .pricing-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
