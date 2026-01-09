@@ -27,7 +27,7 @@ function App() {
     slaMultipliers: {
       none: 1.0,
       "99.9": 1.10,
-      "99.9.99": 1.25,
+      "99.99": 1.25,
     }
   })
 
@@ -73,11 +73,6 @@ function App() {
     }
     
     // Множитель для SLA
-    const slaMultipliers = {
-      "none": 1.0,
-      "99.9": 1.10,
-      "99.99": 1.25
-    };
     calculatedPrice *= pricing.slaMultipliers[slaLevel] || 1.0;
     
     setPrice(calculatedPrice);
