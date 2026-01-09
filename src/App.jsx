@@ -93,7 +93,9 @@ function App() {
                 <input 
                   type="number" 
                   name="vcpu-price" 
-                  value={pricing.vcpu} onChange={(e) => setPricing(prev => ({...prev, vcpu: +e.target.value}))} 
+                  // value={pricing.vcpu}
+                  placeholder={pricing.vcpu}
+                  onChange={(e) => setPricing(prev => ({...prev, vcpu: +e.target.value}))} 
                   />
               </div>
               <div className="input-group">
@@ -101,7 +103,9 @@ function App() {
                 <input 
                   type="number" 
                   name="ram-price" 
-                  value={pricing.ram} onChange={(e) => setPricing(prev => ({...prev, ram: +e.target.value}))} 
+                  // value={pricing.ram} 
+                  placeholder={pricing.ram}
+                  onChange={(e) => setPricing(prev => ({...prev, ram: +e.target.value}))} 
                   />
               </div>
               <div className="input-group">
@@ -109,7 +113,9 @@ function App() {
                 <input 
                   type="number" 
                   name="ssd-price" 
-                  value={pricing.ssd} onChange={(e) => setPricing(prev => ({...prev, ssd: +e.target.value}))} 
+                  // value={pricing.ssd} 
+                  placeholder={pricing.ssd}
+                  onChange={(e) => setPricing(prev => ({...prev, ssd: +e.target.value}))} 
                   />
               </div>
               <div className="input-group">
@@ -117,7 +123,9 @@ function App() {
                 <input 
                   type="number" 
                   name="hdd-price" 
-                  value={pricing.hdd} onChange={(e) => setPricing(prev => ({...prev, hdd: +e.target.value}))} 
+                  // value={pricing.hdd} 
+                  placeholder={pricing.hdd}
+                  onChange={(e) => setPricing(prev => ({...prev, hdd: +e.target.value}))} 
                   />
               </div>
               <div className="input-group">
@@ -125,7 +133,9 @@ function App() {
                 <input 
                   type="number" 
                   name="ethernet-port-price" 
-                  value={pricing.ethernetPorts} onChange={(e) => setPricing(prev => ({...prev, ethernetPorts: +e.target.value}))} 
+                  // value={pricing.ethernetPorts} 
+                  placeholder={pricing.ethernetPorts}
+                  onChange={(e) => setPricing(prev => ({...prev, ethernetPorts: +e.target.value}))} 
                   />
               </div>
               <div className="input-group">
@@ -133,7 +143,9 @@ function App() {
                 <input 
                   type="number" 
                   name="rack-units-price" 
-                  value={pricing.rackUnits} onChange={(e) => setPricing(prev => ({...prev, rackUnits: +e.target.value}))} 
+                  // value={pricing.rackUnits} 
+                  placeholder={pricing.rackUnits}
+                  onChange={(e) => setPricing(prev => ({...prev, rackUnits: +e.target.value}))} 
                   />
               </div>
               <div className="input-group">
@@ -141,7 +153,9 @@ function App() {
                 <input 
                   type="number" 
                   name="power-price" 
-                  value={pricing.power} onChange={(e) => setPricing(prev => ({...prev, power: +e.target.value}))} 
+                  // value={pricing.power} 
+                  placeholder={pricing.power}
+                  onChange={(e) => setPricing(prev => ({...prev, power: +e.target.value}))} 
                   />
               </div>
             </div>
