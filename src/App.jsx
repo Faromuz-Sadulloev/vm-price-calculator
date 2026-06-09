@@ -16,18 +16,18 @@ function App() {
   });
 
   const [pricing, setPricing] = useState({
-    vcpu: 6,
-    ram: 0.8,
-    ssd: 0.04,
-    hdd: 0.015,
-    ethernetPorts: 20,
-    rackUnits: 42,
-    power: 175,
-    adminSupport: 100,
+    vcpu: 6.6, // 6 на 10%
+    ram: 2, // 0.8 на 150%
+    ssd: 0.1, // 0.04 на 150%
+    hdd: 0.0375, // 0.015 на 150%
+    ethernetPorts: 22, // 20 на 10%
+    rackUnits: 46.2, // 42 на 10%
+    power: 192.5, // 175 на 10%
+    adminSupport: 110, // 100 на 10%
     slaMultipliers: {
-      none: 1.0,
-      "99.9": 1.10,
-      "99.99": 1.25,
+      none: 1.0, // 1.0
+      "99.9": 1.10, // 1.0
+      "99.99": 1.25, // 1.0
     }
   })
 
